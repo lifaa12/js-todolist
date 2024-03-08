@@ -4,10 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    hello world
+    <div class="container">
+        <h1>TODO LIST</h1>
+        <div class="input">
+            <input type="text" class="inputbox" placeholder="請輸入待辦事項">
+            <a href="#" class="addbtn">+</a>
+        </div>
+        <div class="content">
+            <div class="tab">
+                <ul class="tabname">
+                    <li>全部</li>
+                    <li>待完成</li>
+                    <li>已完成</li>
+                </ul>
+            </div>
+            <div class="list">
+                <label for="">
+                    <input type="checkbox">
+                    <span>丟垃圾</span>
+                </label>
+            </div>
+            <div class="footer">
+                <p>5個待完成項目</p>
+                <p>清除已完成項目</p>
+            </div>
+        </div>
+    </div>
     <script src="js/all.js"></script>
 </body>
 </html>
