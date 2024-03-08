@@ -41,6 +41,7 @@ h1{
     display: flex;
     border-radius: 10px;
     padding: 4px 4px 4px 1rem;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
 }
 .inputbox{
     outline: 0;
@@ -65,4 +66,144 @@ h1{
     height: 40px;
     border-radius: 10px;
     font-weight: bold;
+}
+.content{
+    background: #fff;
+    box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
+    width: 100%;
+    margin-top: 8px;
+    border-radius: 10px;
+
+}
+.tab{
+    height: 51.5px;
+}
+.tabname{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: #333333;
+    font-size: 14px;
+    height: 100%;
+}
+.tabname li{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #EFEFEF;
+}
+.tabname .tabact{
+    border-bottom: 2px solid #333333;
+}
+.list{
+    position: relative;
+}
+.checkbox{
+    position: relative;
+    width: 90%;
+    user-select: none;
+    display: block;
+    cursor: pointer;
+    margin-left: 15px;
+    padding-left: 22px;
+}
+.checkbox .ch-cont{
+    line-height: 4rem;
+}
+.ch-cont{
+    display: block;
+    padding-left: 1rem;
+    margin: 0 15px 0 15px;
+    border-bottom: 1px solid  #EFEFEF;
+}
+.checkbox input{
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+}
+.ch-cont::before{
+    content: "";
+    position: absolute;
+    left: 14px;
+    top:23px;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #333333;
+    border-radius: 5px;
+    transition: 0.2s ease;
+    transform: scale(1);
+}
+.ch-cont::after{
+    content: "";
+    position: absolute;
+    border-bottom: 2px solid #FFD370;
+    left: 19px;
+    top: 22px;
+    width: 0%;
+    height: 17px;
+    transform: rotate(45deg);
+    opacity: 0;
+    transition: 0.3s ease;
+}
+.check-r::after{
+    content: "";
+    position: absolute;
+    border-bottom: 2px solid #FFD370;
+    left: 14.2px;
+    top: 19.2px;
+    width: 17px;
+    height: 17px;
+    transform: rotate(312deg);
+    opacity: 0;
+    transition: 0.4s ease;
+    transition-delay: 0.13s;
+}
+.checkbox input:checked{
+    ~.ch-cont{
+        text-decoration: line-through;
+        color: #9f9a91;
+    }
+    ~.ch-cont::before{
+        border-color: transparent;
+        transform: scale(0);
+    }
+    ~.ch-cont::after{
+        opacity: 1;
+        width: 10px;
+    }
+    ~.check-r::after{
+        opacity: 1;
+        width: 14px;
+    }
+}
+.checkbox input:not(:checked){
+    ~.check-r::after{
+        transition-delay: 0s;
+    }
+}
+.delete{
+    opacity: 0;
+    background-image: url("https://i.imgur.com/7Q4RjFx.jpg");
+    background-size: contain;
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    top: 25px;
+    right: 0px;
+}
+.ch-cont:hover .delete{
+    opacity: 1;
+}
+.footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 1.5rem;
+    font-size: 0.8rem;
+}
+.footer .f-not-act{
+    color: #9F9A91;
 }
