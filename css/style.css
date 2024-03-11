@@ -209,7 +209,7 @@ h1{
     top: 25px;
     right: 0px;
 }
-.list-cont:hover .delete{
+.checkbox:hover .delete{
     opacity: 1;
 }
 .footer{

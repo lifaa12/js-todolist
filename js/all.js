@@ -9,6 +9,17 @@ const tabAll = document.querySelector("#taball");
 const tabUn = document.querySelector("#tabunfin");
 const tabFin = document.querySelector("#tabfin");
 
+// 資料渲染
+function renderData(todo){
+    let str = ""
+    todo.forEach((item,index)=>{
+        str+=` <li><label class="checkbox"><input type="checkbox" data-num="${index}"  ${item.checked}><span class="list-cont">${item.content}<a href="#" class="delete" data-num="${index}"></a></span><span class="check-r"></span></label></li>`
+    });
+    list.innerHTML=str;
+    str="";
+    input.value="";
+};
+
 // 回tab全部
 function tabAllBtn(){
     tabBtnAll.forEach((item)=>{
@@ -34,6 +45,7 @@ addBtn.addEventListener("click",(e)=>{
 
 //資料刪除、賦予checked狀態
 list.addEventListener("click",(e)=>{
+    console.log(e.target.nodeName);
     let num= e.target.dataset.num;
     if(e.target.className=="delete"){
         e.preventDefault();
@@ -75,15 +87,6 @@ function updateData(){
     renderData(showData);
 };
 
-// 資料渲染
-function renderData(todo){
-    let str = ""
-    todo.forEach((item,index)=>{
-        str+=` <li><label class="checkbox"><input type="checkbox" data-num="${index}"  ${item.checked}><span class="list-cont">${item.content}<a href="#" class="delete" data-num="${index}"></a></span><span class="check-r"></span></label></li>`
-    });
-    list.innerHTML=str;
-    str="";
-    input.value="";
-};
+
 
 
