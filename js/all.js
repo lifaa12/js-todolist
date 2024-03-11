@@ -46,6 +46,7 @@ list.addEventListener("click",(e)=>{
             data[num].checked="";
         };
     };
+    updateData();
 });
 
 
@@ -78,7 +79,7 @@ function updateData(){
 function renderData(todo){
     let str = ""
     todo.forEach((item,index)=>{
-        str+=` <li><label class="checkbox"><input type="checkbox" data-num="${index}"  ${item.checked}><span class="list-cont">${item.content}<a href="#" class="delete" data-num="${index}">x</a></span><span class="check-r"></span></label></li>`
+        str+=` <li><label class="checkbox"><input type="checkbox" data-num="${index}"  ${item.checked}><span class="list-cont">${item.content}<a href="#" class="delete" data-num="${index}"></a></span><span class="check-r"></span></label></li>`
     });
     list.innerHTML=str;
     str="";
