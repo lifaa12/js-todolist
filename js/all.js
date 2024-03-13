@@ -13,7 +13,7 @@ const tabFin = document.querySelector("#tabfin");
 function renderData(todo){
     let str = ""
     todo.forEach((item,index)=>{
-        str+=` <li><label class="checkbox"><input type="checkbox" data-num="${index}"  ${item.checked}><span class="list-cont">${item.content}<a href="#" class="delete" data-num="${index}"></a></span><span class="check-r"></span></label></li>`
+        str+=` <li><label class="checkbox"><input type="checkbox" data-num="${item.id}"  ${item.checked}><span class="list-cont">${item.content}<a href="#" class="delete" data-num="${index}"></a></span><span class="check-r"></span></label></li>`
     });
     list.innerHTML=str;
     str="";
@@ -38,6 +38,7 @@ addBtn.addEventListener("click",(e)=>{
     let obj = {};
     obj.content=input.value;
     obj.checked="";
+    obj.id=Date.now();
     data.unshift(obj);
     renderData(data);
     tabAllBtn();
@@ -45,17 +46,19 @@ addBtn.addEventListener("click",(e)=>{
 
 //資料刪除、賦予checked狀態
 list.addEventListener("click",(e)=>{
-    console.log(e.target.nodeName);
     let num= e.target.dataset.num;
+    console.log(e.target.className);
     if(e.target.className=="delete"){
         e.preventDefault();
         data.splice(num,1);
         renderData(data);
     }else{
-        if(data[num].checked==""){
-            data[num].checked="checked";
-        }else if(data[num].checked=="checked"){
-            data[num].checked="";
+        let dataIndex = data.findIndex((item)=>item.id==num);
+        console.log(dataIndex);
+        if(data[dataIndex].checked==""){
+            data[dataIndex].checked="checked";
+        }else if(data[dataIndex].checked=="checked"){
+            data[dataIndex].checked="";
         };
     };
     updateData();

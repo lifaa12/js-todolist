@@ -48,10 +48,10 @@ h1{
     width: 100%;
     border: 0;
     font-size: 1.3rem;
-    &::placeholder{
-        font-size: 1rem;
-        color: #9F9A91;
-    }
+}
+.inputbox::placeholder{
+    font-size: 1rem;
+    color: #9F9A91;
 }
 .addbtn{
     text-decoration: none;
@@ -174,28 +174,24 @@ h1{
     transition: 0.4s ease;
     transition-delay: 0.13s;
 }
-.checkbox input:checked{
-    ~.list-cont{
-        text-decoration: line-through;
-        color: #9f9a91;
-    }
-    ~.list-cont::before{
-        border-color: transparent;
-        transform: scale(0);
-    }
-    ~.list-cont::after{
-        opacity: 1;
-        width: 10px;
-    }
-    ~.check-r::after{
-        opacity: 1;
-        width: 14px;
-    }
+.checkbox input:checked~.list-cont{
+    text-decoration: line-through;
+    color: #9f9a91;
 }
-.checkbox input:not(:checked){
-    ~.check-r::after{
-        transition-delay: 0s;
-    }
+.checkbox input:checked~.list-cont::before{
+    border-color: transparent;
+    transform: scale(0);
+}
+.checkbox input:checked~.list-cont::after{
+    opacity: 1;
+    width: 10px;
+}
+.checkbox input:checked~.check-r::after{
+    opacity: 1;
+    width: 14px;
+}
+.checkbox input:not(:checked)~.check-r::after{
+    transition-delay: 0s;
 }
 .delete{
     text-decoration: none;
