@@ -4,21 +4,49 @@ const list = document.querySelector('.list')
 const input = document.querySelector('.inputbox');
 const addBtn = document.querySelector('.addbtn');
 const tabBtn = document.querySelector('.tab');
+const content = document.querySelector('.content')
 const tabBtnAll = document.querySelectorAll('.tabname li');
 const tabAll = document.querySelector("#taball");
 const tabUn = document.querySelector("#tabunfin");
 const tabFin = document.querySelector("#tabfin");
+const unNum = document.querySelector('.f-num');
+const cleanFin = document.querySelector('.cleanfin')
 
-// 資料渲染
-function renderData(todo){
-    let str = ""
-    todo.forEach((item,index)=>{
-        str+=` <li><label class="checkbox"><input type="checkbox" data-num="${item.id}"  ${item.checked}><span class="list-cont">${item.content}<a href="#" class="delete" data-num="${index}"></a></span><span class="check-r"></span></label></li>`
-    });
-    list.innerHTML=str;
-    str="";
-    input.value="";
+// content顯示判斷
+function contentShow(){
+    if(data.length!==0){
+        content.classList.add('cont-show');
+    }else{
+        content.classList.remove('cont-show');
+    };
+}
+
+// 未完成數量
+function undoNum(){
+    let undo=data.filter((item)=>item.checked=="");
+    let num=undo.length;
+    unNum.textContent=num;
 };
+
+// 刪除已完成項目
+cleanFin.addEventListener("click",(e)=>{
+    let finData=[];
+    finData=data.filter((item)=>item.checked=="");
+    data=finData;
+    updateData();
+});
+
+// 刪除完成項目按鈕狀態
+function cfBtnStatus(){
+    let fin=data.filter((item)=>item.checked=="checked");
+    if(fin.length==0){
+        cleanFin.disabled=true;
+        cleanFin.classList.remove('cf-act')
+    }else{
+        cleanFin.disabled=false;
+        cleanFin.classList.add('cf-act')
+    }
+}
 
 // 回tab全部
 function tabAllBtn(){
@@ -28,8 +56,18 @@ function tabAllBtn(){
     tabAll.classList.add('tabact');
 }
 
+// 新增按鈕監聽
+addBtn.addEventListener("click",addTodo);
+
+// 鍵盤監聽
+input.addEventListener("keyup",(e)=>{
+    if(e.key=="Enter"){
+        addTodo(e);
+    };
+});
+
 // 新增待辦
-addBtn.addEventListener("click",(e)=>{
+function addTodo(e){
     e.preventDefault();
     if(input.value==""){
         alert("請輸入內容");
@@ -42,28 +80,25 @@ addBtn.addEventListener("click",(e)=>{
     data.unshift(obj);
     renderData(data);
     tabAllBtn();
-});
+}
 
 //資料刪除、賦予checked狀態
 list.addEventListener("click",(e)=>{
     let num= e.target.dataset.num;
-    console.log(e.target.className);
+    let dataIndex = data.findIndex((item)=>item.id==num);
     if(e.target.className=="delete"){
         e.preventDefault();
-        data.splice(num,1);
-        renderData(data);
+        data.splice(dataIndex,1);
+        updateData();
     }else{
-        let dataIndex = data.findIndex((item)=>item.id==num);
-        console.log(dataIndex);
         if(data[dataIndex].checked==""){
             data[dataIndex].checked="checked";
         }else if(data[dataIndex].checked=="checked"){
             data[dataIndex].checked="";
         };
+        setTimeout(updateData, 140);
     };
-    updateData();
 });
-
 
 // TAB切換
 tabBtn.addEventListener("click",(e)=>{
@@ -73,7 +108,6 @@ tabBtn.addEventListener("click",(e)=>{
     e.target.classList.add('tabact');
     updateData();
 });
-
 
 // 資料更新
 function updateData(){
@@ -90,6 +124,18 @@ function updateData(){
     renderData(showData);
 };
 
-
+// 資料渲染
+function renderData(todo){
+    let str = ""
+    todo.forEach((item,index)=>{
+        str+=` <li><label class="checkbox"><input type="checkbox" data-num="${item.id}"  ${item.checked}><span class="list-cont">${item.content}</span><a href="#" class="delete" data-num="${item.id}"></a><span class="check-r"></span></label></li>`
+    });
+    list.innerHTML=str;
+    contentShow();
+    undoNum();
+    cfBtnStatus();
+    str="";
+    input.value="";
+};
 
 
