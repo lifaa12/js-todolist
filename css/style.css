@@ -33,6 +33,11 @@ h1{
 .container{
     margin: 3rem auto 0 auto;
     width: 500px;
+    @media (max-width: 575px){
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 }
 .input{
     width: 100%;
@@ -42,12 +47,18 @@ h1{
     border-radius: 10px;
     padding: 4px 4px 4px 1rem;
     box-shadow: 0 0 15px 0 rgba(0,0,0,0.15);
+    @media (max-width: 575px){
+        width: 95%;
+    }
 }
 .inputbox{
     outline: 0;
     width: 100%;
     border: 0;
     font-size: 1.3rem;
+    @media (max-width: 575px){
+        width: 95%;
+    }
 }
 .inputbox::placeholder{
     font-size: 1rem;
@@ -77,6 +88,9 @@ h1{
     margin-top: 8px;
     border-radius: 10px;
     display: none;
+    @media (max-width: 575px){
+        width: 95%;
+    }
 }
 .cont-show{
     display: block;
@@ -103,7 +117,12 @@ h1{
 .tabname li:hover{
     color: #333333;
 }
-
+.tabban{
+    cursor: auto !important;
+}
+.tabban:hover{
+    color: #9F9A91 !important;
+}
 .tabname .tabact{
     color: #333333;
     border-bottom: 2px solid #333333;
@@ -208,6 +227,9 @@ h1{
     position: absolute;
     top: 25px;
     right: 0px;
+    @media (max-width: 575px){
+        opacity: 1;
+    }
 }
 .checkbox:hover .delete{
     opacity: 1;
@@ -226,4 +248,7 @@ h1{
 .footer .cf-act{
     color: #333333;
     cursor: pointer;
+}
+.footer .cf-act:hover{
+    color: #000000;
 }
