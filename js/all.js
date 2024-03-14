@@ -10,8 +10,7 @@ const tabAll = document.querySelector("#taball");
 const tabUn = document.querySelector("#tabunfin");
 const tabFin = document.querySelector("#tabfin");
 const unNum = document.querySelector('.f-num');
-const cleanFin = document.querySelector('.cleanfin')
-let count=0;
+const cleanFin = document.querySelector('.cleanfin');
 
 // content顯示判斷
 function contentShow(){
@@ -20,7 +19,7 @@ function contentShow(){
     }else{
         content.classList.remove('cont-show');
     };
-}
+};
 
 // 未完成數量
 function undoNum(){
@@ -70,10 +69,6 @@ input.addEventListener("keyup",(e)=>{
 // 新增待辦
 function addTodo(e){
     e.preventDefault();
-    if(count==0){
-        tabBan(tabFin);
-    };
-    count+=1;
     if(input.value==""){
         alert("請輸入內容");
         return;
@@ -131,11 +126,6 @@ function tabBtnStatus(){
     }else{
         tabFin.classList.remove('tabban');
     };
-}
-
-// TAB按鈕禁用(搭配addTodo使用)
-function tabBan(btn){
-    btn.classList.add('tabban')
 };
 
 // 資料更新
@@ -174,6 +164,7 @@ function renderData(todo){
     });
     list.innerHTML=str;
     contentShow();
+    tabBtnStatus()
     undoNum();
     cfBtnStatus();
     str="";
